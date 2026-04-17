@@ -1,25 +1,20 @@
-export default function Products(){
+export default function Products() {
   return (
-    <section className="py-20 px-6 bg-white">
-      <h2 className="text-3xl font-semibold text-center mb-12">
-        Our Products
-      </h2>
+    <section className="py-20 px-6">
+      <h2 className="text-3xl font-bold mb-8">Our Products</h2>
 
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="p-6 bg-white rounded-2xl shadow">
+          <h3 className="text-xl font-semibold">Live Catfish</h3>
+        </div>
 
-        {[
-          "Live Catfish",
-          "Smoked Catfish",
-          "Packaged Fish"
-        ].map((item, i) => (
-          <div key={i} className="p-6 rounded-2xl bg-mist hover:shadow-xl transition">
-            <h3 className="text-xl font-semibold">{item}</h3>
-            <p className="mt-2 opacity-70">
-              Premium quality, hygienically handled and ready for market.
-            </p>
-          </div>
-        ))}
+        <div className="p-6 bg-white rounded-2xl shadow">
+          <h3 className="text-xl font-semibold">Smoked Catfish</h3>
+        </div>
 
+        <div className="p-6 bg-white rounded-2xl shadow">
+          <h3 className="text-xl font-semibold">Packaged Fish</h3>
+        </div>
       </div>
     </section>
   )
