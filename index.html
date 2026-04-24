@@ -3,12 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>EdibleFarms | Premium Locally Raised Catfish</title>
-
+  
+  <!-- SEO Meta Tags -->
+  <title>Edible Farms | Premium Locally Raised Catfish | Fresh & Sustainable</title>
+  <meta name="description" content="Edible Farms brings you premium, sustainably raised catfish. Locally sourced, naturally grown with no antibiotics. Farm-to-fork delivery for restaurants and families." />
+  <meta name="keywords" content="catfish, premium catfish, fresh catfish, sustainable aquaculture, farm raised catfish, bulk catfish, local catfish" />
+  <meta name="author" content="Edible Farms" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Edible Farms | Premium Locally Raised Catfish" />
+  <meta property="og:description" content="Fresh, local, responsible catfish raised naturally. Trusted by restaurants and families." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome 6 (free icons) -->
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
@@ -70,11 +80,7 @@
       height: 78px;
       border-bottom: 1px solid rgba(37,211,102,0.2);
     }
-    /* LOGO MOVED DOWN SLIGHTLY - increased translateY from 8px to 16px */
-    .logo-container { 
-      transform: translateY(16px); 
-      transition: 0.3s; 
-    }
+    .logo-container { transform: translateY(16px); transition: 0.3s; }
     .logo-img { height: 240px; width: auto; filter: brightness(0) invert(1); transition: 0.35s; }
     .main-header.scrolled .logo-container { transform: translateY(8px); }
     .main-header.scrolled .logo-img { height: 92px; }
@@ -191,7 +197,7 @@
     .about-image { background: linear-gradient(135deg, var(--accent-green), var(--accent-gold)); border-radius: 32px; padding: 0.5rem; }
     .about-image img { width: 100%; border-radius: 28px; display: block; object-fit: cover; height: 350px; background: #0a2a22; }
 
-    /* gallery with real images */
+    /* gallery */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -253,6 +259,18 @@
     .contact-form button { background: var(--accent-green); border: none; padding: 1rem; border-radius: 40px; font-weight: bold; cursor: pointer; width: 100%; color: #061d18; font-size: 1rem; transition: 0.2s; }
     .contact-form button:hover { background: #1bb154; transform: translateY(-2px); }
 
+    /* form success/error message */
+    .form-message {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.85rem;
+      display: none;
+    }
+    .form-message.success { background: rgba(37,211,102,0.2); border: 1px solid var(--accent-green); color: #d4f5e0; display: block; }
+    .form-message.error { background: rgba(255,70,70,0.2); border: 1px solid #ff4646; color: #ffb3b3; display: block; }
+
     /* footer */
     footer {
       background: #02120e;
@@ -269,7 +287,6 @@
     .footer-col a { display: block; color: #cbd5e1; text-decoration: none; margin-bottom: 0.5rem; font-size: 0.9rem; transition: 0.2s; }
     .footer-col a:hover { color: white; padding-left: 5px; }
     
-    /* SOCIAL ICONS - VISIBLE with soft background, changes to accent green on hover */
     .social-icons { 
       display: flex; 
       gap: 1rem; 
@@ -300,7 +317,6 @@
     
     .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #9ca3af; }
 
-    /* responsive adjustments for logo */
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .menu-toggle { display: block; }
@@ -333,7 +349,7 @@
 
 <header class="main-header" id="mainHeader">
   <div class="logo-container">
-    <img src="logo.png" alt="Edible Farms" class="logo-img">
+    <img src="logo.png" alt="Edible Farms - Premium Catfish Logo" class="logo-img" loading="eager">
   </div>
   <div class="nav-links">
     <a href="#home">Home</a>
@@ -401,64 +417,49 @@
       </div>
     </div>
     <div class="about-image">
-      <img src="https://img.freepik.com/premium-photo/close-up-fresh-catfish-with-glossy-skins-bustling-fish-market-highlighting-texture-details-aquatic-creatures-against-vibrant-dynamic-background_765331-5015.jpg" alt="Edible Farms sustainable pond" style="width:100%; border-radius:28px;">
+      <img src="https://img.freepik.com/premium-photo/close-up-fresh-catfish-with-glossy-skins-bustling-fish-market-highlighting-texture-details-aquatic-creatures-against-vibrant-dynamic-background_765331-5015.jpg" alt="Fresh catfish at Edible Farms market" loading="lazy" style="width:100%; border-radius:28px;">
     </div>
   </div>
 </section>
 
-<!-- Gallery Section with Actual Images -->
+<!-- Gallery Section -->
 <section id="gallery">
   <h2 class="section-title">From Pond to <span>Plate</span></h2>
   <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="https://www.shutterstock.com/image-photo/some-white-catfish-popularly-known-600nw-2304531177.jpg" alt="Fresh whole catfish on ice">
-      <div class="gallery-overlay">Fresh Catch</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://www.aquaculturealliance.org/wp-content/uploads/2009/09/ROGERSpic1-960x450.jpg" alt="Sustainable farm pond">
-      <div class="gallery-overlay">Natural Ponds</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Grilled catfish dish">
-      <div class="gallery-overlay">Premium Fillets</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://emeraldtransportationsolutions.com/wp-content/uploads/2022/05/0ylzNNplW9qe0fPfGGeG9kHnnRZvqZSx1655986652.jpg" alt="Delivery truck fresh seafood">
-      <div class="gallery-overlay">Farm to Table</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://www.fao.org/fishery/services/storage/fs/fishery/images/culturedspecies//clarias/12swam-pond-clarias-harvest-Santchou.jpg" alt="Fish harvest at sunrise">
-      <div class="gallery-overlay">Morning Harvest</div>
-    </div>
-    <div class="gallery-item">
-      <img src="https://cheflolaskitchen.com/wp-content/uploads/2025/07/Catfish-Steak.jpg" alt="Chef preparing catfish">
-      <div class="gallery-overlay">Chef Approved</div>
-    </div>
+    <div class="gallery-item"><img src="https://www.shutterstock.com/image-photo/some-white-catfish-popularly-known-600nw-2304531177.jpg" alt="Fresh whole catfish on ice at Edible Farms" loading="lazy"><div class="gallery-overlay">Fresh Catch</div></div>
+    <div class="gallery-item"><img src="https://www.aquaculturealliance.org/wp-content/uploads/2009/09/ROGERSpic1-960x450.jpg" alt="Sustainable fish farming pond at Edible Farms" loading="lazy"><div class="gallery-overlay">Natural Ponds</div></div>
+    <div class="gallery-item"><img src="https://fishtank.com.ng/wp-content/uploads/2020/12/DSC_5368-1-scaled.jpg" alt="Grilled premium catfish fillet dish" loading="lazy"><div class="gallery-overlay">Premium Fillets</div></div>
+    <div class="gallery-item"><img src="https://emeraldtransportationsolutions.com/wp-content/uploads/2022/05/0ylzNNplW9qe0fPfGGeG9kHnnRZvqZSx1655986652.jpg" alt="Fresh catfish delivery truck farm to table" loading="lazy"><div class="gallery-overlay">Farm to Table</div></div>
+    <div class="gallery-item"><img src="https://www.fao.org/fishery/services/storage/fs/fishery/images/culturedspecies//clarias/12swam-pond-clarias-harvest-Santchou.jpg" alt="Morning catfish harvest at Edible Farms" loading="lazy"><div class="gallery-overlay">Morning Harvest</div></div>
+    <div class="gallery-item"><img src="https://cheflolaskitchen.com/wp-content/uploads/2025/07/Catfish-Steak.jpg" alt="Chef preparing premium catfish steak" loading="lazy"><div class="gallery-overlay">Chef Approved</div></div>
   </div>
   <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
 </section>
 
-<!-- Contact Section -->
+<!-- Contact Section with Working Form -->
 <section id="contact">
   <h2 class="section-title">Let's <span>Connect</span></h2>
   <div class="contact-grid">
     <div class="contact-info">
       <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <span>Ablekuma Pentecost Junction, Accra</span></div>
-      <div class="contact-detail"><i class="fas fa-phone-alt"></i> <span>+233 54 660 0063</span></div>
-      <div class="contact-detail"><i class="fas fa-envelope"></i> <span>ediblefarms@gmail.com</span></div>
+      <div class="contact-detail"><i class="fas fa-phone-alt"></i> <span><a href="tel:+233546600063" style="color:white; text-decoration:none;">+233 54 660 0063</a></span></div>
+      <div class="contact-detail"><i class="fas fa-envelope"></i> <span><a href="mailto:ediblefarms@gmail.com" style="color:white; text-decoration:none;">ediblefarms@gmail.com</a></span></div>
       <div class="contact-detail"><i class="fas fa-clock"></i> <span>Mon-Fri: 7am – 6pm | Sat: 9am – 4pm</span></div>
       <div class="social-icons" style="margin-top: 1.5rem;">
-        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://wa.me/233546600063" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/ediblefarms" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/ediblefarms" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/ediblefarms" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
     <div class="contact-form">
-      <input type="text" placeholder="Your name" id="name">
-      <input type="email" placeholder="Email address">
-      <textarea rows="4" placeholder="Tell us about your order or inquiry..."></textarea>
-      <button>Send Message →</button>
+      <form id="contactForm" action="https://formspree.io/f/xbldjqap" method="POST">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Email address" required>
+        <textarea name="message" rows="4" placeholder="Tell us about your order or inquiry..." required></textarea>
+        <button type="submit">Send Message →</button>
+      </form>
+      <div id="formMessage" class="form-message"></div>
     </div>
   </div>
 </section>
@@ -475,7 +476,7 @@
   <div class="footer-grid">
     <div class="footer-col"><h4>Edible Farms</h4><p style="font-size:0.85rem;">Premium catfish, raised naturally. Local, responsible, and delicious.</p></div>
     <div class="footer-col"><h4>Quick Links</h4><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
-    <div class="footer-col"><h4>Support</h4><a href="#">Bulk Orders</a><a href="#">Shipping Policy</a><a href="#">Returns</a><a href="#">FAQs</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="#bulk">Bulk Orders</a><a href="#">Shipping Policy</a><a href="#">Returns</a><a href="#">FAQs</a></div>
     <div class="footer-col"><h4>Newsletter</h4><p style="font-size:0.8rem;">Get fresh updates & recipes.</p><div style="display:flex; margin-top:0.5rem;"><input type="email" placeholder="Your email" style="background:rgba(255,255,255,0.1); border:none; padding:0.6rem; border-radius:30px; width:100%;"><button style="background:var(--accent-green); border:none; border-radius:30px; padding:0 1rem; margin-left:0.5rem; cursor:pointer;">→</button></div></div>
   </div>
   <div class="copyright">© 2025 Edible Farms — Fresh. Local. Responsible. All rights reserved.</div>
@@ -488,11 +489,15 @@
     const mobileNav = document.getElementById('mobileNav');
     const cursor = document.querySelector('.custom-cursor');
     const interactive = document.querySelectorAll('a, .btn, .service-card, .gallery-item, button');
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
 
+    // Sticky header
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 40);
     });
 
+    // Mobile menu
     if(menuToggle && mobileNav) {
       menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
       mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileNav.classList.remove('active')));
@@ -502,6 +507,7 @@
       });
     }
 
+    // Custom cursor
     if(cursor) {
       document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
       interactive.forEach(el => {
@@ -510,13 +516,49 @@
       });
     }
 
-    // smooth anchor scroll
+    // Smooth anchor scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
         if(target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
     });
+
+    // Form submission handler with Formspree
+    if(contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('button');
+        const originalBtnText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = 'Sending...';
+        submitBtn.disabled = true;
+        
+        try {
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          
+          if(response.ok) {
+            formMessage.className = 'form-message success';
+            formMessage.innerHTML = '✓ Message sent successfully! We\'ll get back to you soon.';
+            contactForm.reset();
+          } else {
+            throw new Error('Form submission failed');
+          }
+        } catch(error) {
+          formMessage.className = 'form-message error';
+          formMessage.innerHTML = '✗ Oops! Something went wrong. Please email us directly at ediblefarms@gmail.com';
+        } finally {
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+          setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+        }
+      });
+    }
   })();
 </script>
 </body>
