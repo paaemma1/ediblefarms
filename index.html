@@ -22,6 +22,7 @@
       --primary-dark: #061d18;
       --accent-green: #25d366;
       --accent-gold: #d4af37;
+      --accent-gold-light: #f5e6a3;
       --glass-bg: rgba(6, 29, 24, 0.55);
       --glass-border: rgba(255, 255, 255, 0.1);
       --text-light: #eef4ff;
@@ -70,12 +71,20 @@
       height: 78px;
       border-bottom: 1px solid rgba(37,211,102,0.2);
     }
-    /* LOGO MOVED DOWN SLIGHTLY - increased translateY from 8px to 16px */
     .logo-container { 
       transform: translateY(16px); 
       transition: 0.3s; 
     }
-    .logo-img { height: 240px; width: auto; filter: brightness(0) invert(1); transition: 0.35s; }
+    /* PREMIUM LOGO - Gold gradient instead of white */
+    .logo-img { 
+      height: 240px; 
+      width: auto; 
+      filter: brightness(0) saturate(100%) invert(86%) sepia(24%) saturate(800%) hue-rotate(2deg) brightness(92%) contrast(95%);
+      /* This creates a warm gold/amber tone */
+      transition: 0.35s;
+      opacity: 0.95;
+    }
+    /* Alternative: if you prefer a green-gold gradient look */
     .main-header.scrolled .logo-container { transform: translateY(8px); }
     .main-header.scrolled .logo-img { height: 92px; }
 
@@ -333,7 +342,8 @@
 
 <header class="main-header" id="mainHeader">
   <div class="logo-container">
-    <img src="logo.png" alt="Edible Farms" class="logo-img">
+    <!-- Logo with premium gold/amber tone - removed white invert filter -->
+    <img src="logo.png" alt="Edible Farms" class="logo-img" style="filter: brightness(0) saturate(100%) invert(86%) sepia(42%) saturate(680%) hue-rotate(2deg) brightness(96%) contrast(92%);">
   </div>
   <div class="nav-links">
     <a href="#home">Home</a>
