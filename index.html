@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>EdibleFarms | Premium Locally Raised Catfish</title>
 
-  <!-- Google Fonts - Elegant serif + modern sans -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
     * {
@@ -19,23 +22,20 @@
       --primary-dark: #061d18;
       --accent-green: #25d366;
       --accent-gold: #d4af37;
-      --accent-gold-glow: rgba(212, 175, 55, 0.3);
-      --glass-bg: rgba(6, 29, 24, 0.48);
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --glass-border-glow: rgba(37, 211, 102, 0.3);
+      --glass-bg: rgba(6, 29, 24, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.1);
       --text-light: #eef4ff;
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       background-color: var(--primary-dark);
       color: white;
       line-height: 1.5;
       overflow-x: hidden;
-      cursor: default;
     }
 
-    /* ===== PREMIUM CUSTOM CURSOR ===== */
+    /* custom cursor */
     .custom-cursor {
       width: 8px;
       height: 8px;
@@ -44,90 +44,45 @@
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      transition: transform 0.1s ease, width 0.2s, height 0.2s, background 0.2s;
+      transition: transform 0.1s, width 0.2s, height 0.2s;
       transform: translate(-50%, -50%);
       mix-blend-mode: difference;
     }
+    .custom-cursor.hover { width: 32px; height: 32px; background: rgba(37,211,102,0.4); backdrop-filter: blur(2px); mix-blend-mode: normal; }
 
-    .custom-cursor.hover {
-      width: 32px;
-      height: 32px;
-      background: rgba(37, 211, 102, 0.5);
-      backdrop-filter: blur(2px);
-      mix-blend-mode: normal;
-    }
-
-    /* ===== HEADER ===== */
+    /* header */
     .main-header {
       position: fixed;
       top: 0;
       width: 100%;
-      height: 90px;
       padding: 0 6%;
+      height: 90px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       z-index: 1100;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: all 0.35s;
       background: transparent;
     }
-
     .main-header.scrolled {
-      background: rgba(6, 29, 24, 0.88);
+      background: rgba(6,29,24,0.9);
       backdrop-filter: blur(18px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
       height: 78px;
-      border-bottom: 1px solid rgba(37, 211, 102, 0.15);
+      border-bottom: 1px solid rgba(37,211,102,0.2);
     }
+    .logo-container { transform: translateY(8px); transition: 0.3s; }
+    .logo-img { height: 240px; width: auto; filter: brightness(0) invert(1); transition: 0.35s; }
+    .main-header.scrolled .logo-container { transform: translateY(4px); }
+    .main-header.scrolled .logo-img { height: 92px; }
 
-    .logo-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      min-width: 210px;
-      transform: translateY(8px);
-      transition: transform 0.3s ease;
-    }
-
-    .logo-img {
-      height: 240px;
-      width: auto;
-      filter: brightness(0) invert(1);
-      transition: height 0.35s ease;
-      display: block;
-      object-fit: contain;
-    }
-
-    .main-header.scrolled .logo-container {
-      transform: translateY(4px);
-    }
-
-    .main-header.scrolled .logo-img {
-      height: 92px;
-    }
-
-    /* navigation with premium hover */
-    .nav-links {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2.8rem;
-      flex: 1;
-      margin: 0 1rem;
-    }
-
+    .nav-links { display: flex; gap: 2.8rem; flex: 1; justify-content: center; }
     .nav-links a {
       color: #f1f5f9;
       text-decoration: none;
-      font-size: 0.95rem;
       font-weight: 500;
-      letter-spacing: -0.2px;
-      transition: all 0.3s ease;
-      opacity: 0.88;
+      transition: 0.3s;
       position: relative;
     }
-
     .nav-links a::after {
       content: '';
       position: absolute;
@@ -136,75 +91,21 @@
       width: 0;
       height: 2px;
       background: linear-gradient(90deg, var(--accent-green), var(--accent-gold));
-      transition: width 0.3s ease;
+      transition: width 0.3s;
     }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--accent-green); }
 
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-green);
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-
-    @media (min-width: 1200px) {
-      .nav-links { gap: 3.2rem; }
-      .nav-links a { font-size: 1rem; }
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 2rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: white;
-      z-index: 1200;
-      transition: transform 0.2s;
-    }
-
-    .menu-toggle:hover {
-      transform: scale(1.05);
-    }
-
+    .menu-toggle { display: none; font-size: 2rem; cursor: pointer; background: none; border: none; color: white; z-index: 1200; }
     .mobile-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: rgba(3, 20, 16, 0.98);
-      backdrop-filter: blur(28px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      transform: translateX(100%);
-      transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      z-index: 1050;
+      position: fixed; inset: 0; background: rgba(3,20,16,0.98); backdrop-filter: blur(28px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+      transform: translateX(100%); transition: transform 0.45s; z-index: 1050;
     }
+    .mobile-nav.active { transform: translateX(0); }
+    .mobile-nav a { font-size: 1.7rem; font-weight: 600; color: white; text-decoration: none; }
 
-    .mobile-nav.active {
-      transform: translateX(0);
-    }
-
-    .mobile-nav a {
-      font-size: 1.7rem;
-      font-weight: 600;
-      color: white;
-      text-decoration: none;
-      padding: 0.5rem;
-      transition: color 0.2s;
-    }
-
-    .mobile-nav a:hover {
-      color: var(--accent-green);
-    }
-
-    /* ===== HERO SECTION - PREMIUM GLASS EFFECTS ===== */
+    /* hero (keep as is but slight adjustment) */
     .hero {
       min-height: 92vh;
       padding: 60px 8% 90px;
@@ -212,576 +113,325 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      background: 
-        linear-gradient(105deg, 
-          rgba(6, 29, 24, 0.94) 0%,
-          rgba(6, 29, 24, 0.7) 40%,
-          rgba(6, 29, 24, 0.4) 65%,
-          rgba(6, 29, 24, 0.15) 100%),
-        url('redtail-catfish.jpg');
+      background: linear-gradient(105deg, #061d18 0%, rgba(6,29,24,0.7) 40%, rgba(6,29,24,0.4) 100%), url('redtail-catfish.jpg');
       background-size: cover;
       background-position: 72% center;
-      background-repeat: no-repeat;
-      position: relative;
     }
-
-    /* decorative floating elements */
-    .hero::before {
-      content: '🐟';
-      position: absolute;
-      bottom: 15%;
-      right: 5%;
-      font-size: 6rem;
-      opacity: 0.06;
-      pointer-events: none;
-      animation: float 8s ease-in-out infinite;
+    .hero-content { max-width: 600px; }
+    .hero h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem,7vw,5rem); font-weight: 700; background: linear-gradient(135deg,#fff,#d4f5e0); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .hero-tagline { color: var(--accent-green); letter-spacing: 5px; font-size: 0.85rem; margin-bottom: 1rem; }
+    .btn-group { display: flex; gap: 1rem; margin: 2rem 0 1.5rem; }
+    .btn {
+      padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none;
+      transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
     }
+    .btn-primary { background: linear-gradient(135deg, var(--accent-green), #1a9e4a); color: #061d18; box-shadow: 0 8px 20px rgba(37,211,102,0.3); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(37,211,102,0.4); }
+    .btn-outline { border: 1.5px solid rgba(255,255,255,0.5); background: rgba(6,29,24,0.4); backdrop-filter: blur(6px); color: white; }
+    .btn-outline:hover { border-color: var(--accent-green); background: rgba(255,255,255,0.1); transform: translateY(-3px); }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(5deg); }
-    }
-
-    .hero-content {
-      max-width: 620px;
-      margin-top: 20px;
-      flex: 1;
-    }
-
-    /* PREMIUM TRUST BADGES - glassmorphism + gradient borders */
     .trust-badges {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-left: 2rem;
-      opacity: 0;
-      transform: translateX(30px);
-      animation: slideInRight 0.7s ease forwards 0.4s;
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      padding: 1.8rem 1.8rem;
-      border-radius: 32px;
-      border: 1px solid transparent;
-      background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), 
-                        linear-gradient(135deg, var(--accent-green), var(--accent-gold), var(--accent-green));
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      min-width: 260px;
-      transition: all 0.4s ease;
+      background: rgba(6,29,24,0.5); backdrop-filter: blur(16px); border-radius: 32px;
+      padding: 1.8rem; min-width: 260px; border: 1px solid transparent;
+      background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), linear-gradient(135deg, var(--accent-green), var(--accent-gold));
+      background-origin: border-box; background-clip: padding-box, border-box;
+      transition: 0.3s;
     }
+    .trust-badges:hover { transform: translateY(-5px); }
+    .badge-item { display: flex; gap: 14px; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .badge-item:last-child { border: none; }
+    .social-proof { margin-top: 1rem; text-align: center; font-size: 0.7rem; }
 
-    .trust-badges:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(37, 211, 102, 0.2);
+    /* sections */
+    section { padding: 100px 8%; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      letter-spacing: -0.3px;
     }
+    .section-title span { color: var(--accent-green); border-bottom: 2px solid var(--accent-gold); display: inline-block; padding-bottom: 6px; }
 
-    @keyframes slideInRight {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+    /* services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
     }
-
-    .badge-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: transform 0.2s ease;
-    }
-
-    .badge-item:hover {
-      transform: translateX(5px);
-    }
-
-    .badge-item:last-child {
-      border-bottom: none;
-    }
-
-    .badge-icon {
-      font-size: 1.8rem;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
-      transition: transform 0.2s;
-    }
-
-    .badge-item:hover .badge-icon {
-      transform: scale(1.05);
-    }
-
-    .badge-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .badge-title {
-      font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: -0.2px;
-      color: white;
-    }
-
-    .badge-sub {
-      font-size: 0.7rem;
-      opacity: 0.7;
-      color: #cbd5e1;
-    }
-
-    /* Social proof strip */
-    .social-proof {
-      margin-top: 1.5rem;
-      padding-top: 1.2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    .service-card {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(4px);
+      padding: 2rem 1.5rem;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.35s;
       text-align: center;
     }
+    .service-card:hover { transform: translateY(-8px); background: rgba(37,211,102,0.08); border-color: rgba(37,211,102,0.4); }
+    .service-icon { font-size: 2.8rem; color: var(--accent-green); margin-bottom: 1rem; }
+    .service-card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
+    .service-card p { color: #cbd5e1; font-size: 0.9rem; }
 
-    .social-proof-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      opacity: 0.6;
-      margin-bottom: 0.6rem;
+    /* about double column */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
     }
+    .about-text p { margin-bottom: 1.2rem; color: #e2e8f0; line-height: 1.6; }
+    .about-stats { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .stat { background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 20px; text-align: center; flex: 1; }
+    .stat-number { font-size: 2rem; font-weight: 800; color: var(--accent-green); }
+    .about-image { background: linear-gradient(135deg, var(--accent-green), var(--accent-gold)); border-radius: 32px; padding: 0.5rem; }
+    .about-image img { width: 100%; border-radius: 28px; display: block; object-fit: cover; height: 350px; background: #0a2a22; }
 
-    .featured-logos {
+    /* gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(145deg, #0a2a22, #03110e);
+      border-radius: 24px;
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 1.2rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: #cbd5e1;
-      flex-wrap: wrap;
+      font-size: 3rem;
+      transition: 0.3s;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.1);
     }
+    .gallery-item:hover { transform: scale(1.02); border-color: var(--accent-green); background: #0f352b; }
 
-    .featured-logos span {
-      opacity: 0.7;
-      transition: opacity 0.2s;
+    /* contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
     }
-
-    .featured-logos span:hover {
-      opacity: 1;
-      color: var(--accent-green);
+    .contact-info { background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 28px; backdrop-filter: blur(8px); }
+    .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .contact-detail i { font-size: 1.6rem; color: var(--accent-green); width: 40px; }
+    .contact-form input, .contact-form textarea {
+      width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px; color: white; font-family: inherit;
     }
+    .contact-form button { background: var(--accent-green); border: none; padding: 1rem; border-radius: 40px; font-weight: bold; cursor: pointer; width: 100%; color: #061d18; font-size: 1rem; transition: 0.2s; }
+    .contact-form button:hover { background: #1bb154; transform: translateY(-2px); }
 
-    @media (max-width: 768px) {
-      .trust-badges {
-        margin-left: 0;
-        margin-top: 1.5rem;
-        width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-        padding: 1.2rem;
-      }
-      .badge-item {
-        flex: 1;
-        min-width: 160px;
-        border-bottom: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
-        padding-right: 1rem;
-      }
-      .badge-item:last-child {
-        border-right: none;
-      }
-      .social-proof {
-        width: 100%;
-      }
+    /* footer */
+    footer {
+      background: #02120e;
+      padding: 3rem 8% 2rem;
+      border-top: 1px solid rgba(37,211,102,0.2);
     }
-
-    @media (max-width: 550px) {
-      .trust-badges {
-        flex-direction: column;
-      }
-      .badge-item {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
-    }
-
-    /* Typography enhancements */
-    .hero-tagline, .hero h2, .hero-description, .btn-group, .hero-trusted {
-      opacity: 0;
-      transform: translateY(26px);
-      animation: fadeUp 0.7s forwards;
-    }
-
-    .hero-tagline { animation-delay: 0.05s; }
-    .hero h2 { animation-delay: 0.15s; }
-    .hero-description { animation-delay: 0.28s; }
-    .btn-group { animation-delay: 0.42s; }
-    .hero-trusted { animation-delay: 0.56s; }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-tagline {
-      color: var(--accent-green);
-      font-size: 0.85rem;
-      letter-spacing: 5px;
-      font-weight: 600;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero-tagline::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 40px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent-green), var(--accent-gold));
-    }
-
-    @media (min-width: 768px) {
-      .hero-tagline { font-size: 0.9rem; letter-spacing: 6px; margin-bottom: 1.2rem; }
-    }
-
-    .hero h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 7vw, 5.2rem);
-      font-weight: 700;
-      line-height: 1.05;
-      margin-bottom: 1.2rem;
-      letter-spacing: -0.01em;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.25);
-      background: linear-gradient(135deg, #ffffff, #d4f5e0);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-description {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 2.2rem;
-      color: #e2edf2;
-      max-width: 560px;
-      font-weight: 400;
-    }
-
-    @media (min-width: 768px) {
-      .hero-description { font-size: 1.08rem; line-height: 1.65; margin-bottom: 2.5rem; }
-    }
-
-    /* Premium buttons with gradient */
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
       margin-bottom: 2rem;
     }
+    .footer-col h4 { margin-bottom: 1rem; font-size: 1.1rem; color: var(--accent-green); }
+    .footer-col a { display: block; color: #cbd5e1; text-decoration: none; margin-bottom: 0.5rem; font-size: 0.9rem; transition: 0.2s; }
+    .footer-col a:hover { color: white; padding-left: 5px; }
+    .social-icons { display: flex; gap: 1rem; margin-top: 1rem; }
+    .social-icons a { background: rgba(255,255,255,0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: 0.2s; }
+    .social-icons a:hover { background: var(--accent-green); color: #061d18; transform: translateY(-3px); }
+    .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #9ca3af; }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 0.9rem 2rem;
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s ease;
-      z-index: -1;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-green), #1a9e4a);
-      color: #061d18;
-      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
-      border: none;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.45);
-    }
-
-    .btn-outline {
-      border: 1.5px solid rgba(255, 255, 255, 0.5);
-      background: rgba(6, 29, 24, 0.4);
-      backdrop-filter: blur(8px);
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: var(--accent-green);
-      transform: translateY(-3px);
-    }
-
-    .hero-trusted {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #e2edf2;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(12px);
-      padding: 0.6rem 1.3rem;
-      border-radius: 60px;
-      width: fit-content;
-      border: 0.5px solid rgba(255,255,255,0.15);
-    }
-
-    /* Restaurant CTA premium */
-    .restaurant-cta {
-      padding: 85px 8%;
-      background: linear-gradient(125deg, #05231e, #02110e);
-      text-align: center;
-      position: relative;
-      border-top: 1px solid rgba(37, 211, 102, 0.2);
-    }
-
-    .restaurant-cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-green), var(--accent-gold), transparent);
-    }
-
-    .restaurant-cta h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
-      font-weight: 700;
-      max-width: 800px;
-      margin: 0 auto 1.2rem;
-      letter-spacing: -0.2px;
-    }
-
-    .restaurant-cta p {
-      max-width: 660px;
-      margin: 0 auto 2rem;
-      font-size: 1.05rem;
-      color: #cbd5e1;
-    }
-
-    /* Responsive */
+    /* responsive */
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .menu-toggle { display: block; }
-      .main-header { padding: 0 5%; }
-      .logo-container { transform: translateY(6px); }
       .logo-img { height: 180px; }
-      .main-header.scrolled .logo-container { transform: translateY(3px); }
-      .main-header.scrolled .logo-img { height: 70px; }
-      .hero { padding-top: 80px; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-      .hero-content { margin-top: 5px; }
-      .hero-description { font-size: 0.95rem; }
-      .hero-trusted { font-size: 0.75rem; }
-      .hero-tagline { font-size: 0.8rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { flex-direction: column; align-items: flex-start; gap: 2rem; }
+      .trust-badges { width: 100%; }
     }
-
     @media (max-width: 600px) {
-      .hero { padding-top: 95px; }
-      .logo-container { transform: translateY(5px); }
-      .hero h2 { margin-bottom: 0.8rem; }
-      .hero-description { font-size: 0.88rem; margin-bottom: 1.5rem; }
-      .btn-group { margin-bottom: 1.5rem; }
-      .btn { padding: 0.7rem 1.5rem; }
-    }
-
-    @media (min-width: 1600px) {
-      .nav-links { gap: 4rem; }
-      .trust-badges { padding: 2rem 2rem; }
-      .hero-description { font-size: 1.15rem; }
+      .hero h2 { font-size: 2.5rem; }
+      .btn-group { flex-direction: column; align-items: stretch; }
+      .btn { justify-content: center; }
+      section { padding: 60px 5%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Premium custom cursor -->
-  <div class="custom-cursor"></div>
+<div class="custom-cursor"></div>
 
-  <header class="main-header" id="mainHeader">
-    <div class="logo-container">
-      <img src="logo.png" alt="Edible Farms - Premium Catfish" class="logo-img" onerror="this.style.opacity='0.9';">
-    </div>
-
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Gallery</a>
-      <a href="#">Bulk Orders</a>
-      <a href="#">Contact</a>
-    </div>
-
-    <div class="menu-toggle" id="menuToggle" aria-label="Menu">☰</div>
-  </header>
-
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Gallery</a>
-    <a href="#">Bulk Orders</a>
-    <a href="#">Contact</a>
+<header class="main-header" id="mainHeader">
+  <div class="logo-container">
+    <img src="logo.png" alt="Edible Farms" class="logo-img">
   </div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+    <a href="#bulk">Bulk Orders</a>
+  </div>
+  <div class="menu-toggle" id="menuToggle">☰</div>
+</header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <p class="hero-tagline">FRESH. LOCAL. RESPONSIBLE.</p>
-      <h2>Premium Catfish.<br>Raised Naturally.</h2>
-      
-      <p class="hero-description">
-        Ditch the mystery meat. Edible Farms brings you buttery, high-protein catfish raised with a conscience. 
-        Locally sourced, sustainably grown, and delivered fresh, this is farm-to-fork at its finest.
-      </p>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+  <a href="#bulk">Bulk Orders</a>
+</div>
 
-      <div class="btn-group">
-        <a href="#" class="btn btn-primary">Bulk Orders →</a>
-        <a href="#" class="btn btn-outline">Buy for Home →</a>
-      </div>
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p class="hero-tagline">FRESH. LOCAL. RESPONSIBLE.</p>
+    <h2>Premium Catfish.<br>Raised Naturally.</h2>
+    <p style="margin: 1rem 0 0; color:#d1dbe6; max-width: 550px;">Ditch the mystery meat. Edible Farms brings you buttery, high-protein catfish raised with a conscience. Locally sourced, sustainably grown, and delivered fresh — farm-to-fork at its finest.</p>
+    <div class="btn-group">
+      <a href="#bulk" class="btn btn-primary">Bulk Orders →</a>
+      <a href="#contact" class="btn btn-outline">Buy for Home →</a>
+    </div>
+    <div class="hero-trusted" style="background: rgba(0,0,0,0.3); width: fit-content; padding: 0.5rem 1rem; border-radius: 40px;">★ Trusted by restaurants & families</div>
+  </div>
+  <div class="trust-badges">
+    <div class="badge-item"><span class="badge-icon">🐟</span><div><div class="badge-title">100% Locally Sourced</div><div class="badge-sub">Regional farms → your table</div></div></div>
+    <div class="badge-item"><span class="badge-icon">🌱</span><div><div class="badge-title">Sustainably Raised</div><div class="badge-sub">No antibiotics • No hormones</div></div></div>
+    <div class="badge-item"><span class="badge-icon">⭐</span><div><div class="badge-title">4.9/5 from 500+ Customers</div><div class="badge-sub">Trusted by families & chefs</div></div></div>
+    <div class="badge-item"><span class="badge-icon">📦</span><div><div class="badge-title">Fresh 24-Hour Delivery</div><div class="badge-sub">Farm-to-fork guarantee</div></div></div>
+    <div class="social-proof"><div style="opacity:0.6; font-size:0.65rem;">AS FEATURED IN</div><div style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.4rem;"><span>FOOD & WINE</span><span>✦</span><span>EATER</span><span>✦</span><span>LOCAL HARVEST</span></div></div>
+  </div>
+</section>
 
-      <div class="hero-trusted">
-        ★ Trusted by restaurants and families across the community
+<!-- Services Section -->
+<section id="services">
+  <h2 class="section-title">Our <span>Services</span></h2>
+  <div class="services-grid">
+    <div class="service-card"><i class="fas fa-truck service-icon"></i><h3>Wholesale Supply</h3><p>Consistent weekly delivery for restaurants, hotels & catering businesses.</p></div>
+    <div class="service-card"><i class="fas fa-home service-icon"></i><h3>Home Delivery</h3><p>Fresh catfish delivered to your door. Flexible subscriptions & family packs.</p></div>
+    <div class="service-card"><i class="fas fa-cut service-icon"></i><h3>Custom Processing</h3><p>Fillets, whole fish, or value-added cuts — tailored to your need.</p></div>
+    <div class="service-card"><i class="fas fa-chalkboard-user service-icon"></i><h3>Farm Tours & Education</h3><p>Learn about sustainable aquaculture. Perfect for schools & chef programs.</p></div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+  <h2 class="section-title">About <span>Edible Farms</span></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Founded in the heart of the Midwest, Edible Farms started with a simple belief: <strong>great food starts with integrity.</strong> We raise premium catfish in pristine, natural ponds with zero antibiotics or growth hormones.</p>
+      <p>Our closed-loop system respects the environment while delivering the buttery, clean taste that chefs and families love. From fingerling to harvest, every step is transparent and responsible.</p>
+      <div class="about-stats">
+        <div class="stat"><div class="stat-number">15+</div><div style="font-size:0.8rem;">Years of Excellence</div></div>
+        <div class="stat"><div class="stat-number">500+</div><div style="font-size:0.8rem;">Partner Families</div></div>
+        <div class="stat"><div class="stat-number">50+</div><div style="font-size:0.8rem;">Restaurants Served</div></div>
       </div>
     </div>
+    <div class="about-image">
+      <img src="https://placehold.co/600x400/0a2a22/white?text=Farm+Scenery" alt="Edible Farms" style="width:100%; border-radius:28px;">
+    </div>
+  </div>
+</section>
 
-    <!-- Premium trust badges + social proof -->
-    <div class="trust-badges">
-      <div class="badge-item">
-        <span class="badge-icon">🐟</span>
-        <div class="badge-text">
-          <span class="badge-title">100% Locally Sourced</span>
-          <span class="badge-sub">From regional farms to your table</span>
-        </div>
-      </div>
-      <div class="badge-item">
-        <span class="badge-icon">🌱</span>
-        <div class="badge-text">
-          <span class="badge-title">Sustainably Raised</span>
-          <span class="badge-sub">No antibiotics • No hormones</span>
-        </div>
-      </div>
-      <div class="badge-item">
-        <span class="badge-icon">⭐</span>
-        <div class="badge-text">
-          <span class="badge-title">4.9/5 from 500+ Customers</span>
-          <span class="badge-sub">Trusted by families & chefs</span>
-        </div>
-      </div>
-      <div class="badge-item">
-        <span class="badge-icon">📦</span>
-        <div class="badge-text">
-          <span class="badge-title">Fresh 24-Hour Delivery</span>
-          <span class="badge-sub">Farm-to-fork guarantee</span>
-        </div>
-      </div>
-      
-      <!-- Social proof / as featured in -->
-      <div class="social-proof">
-        <div class="social-proof-label">AS FEATURED IN</div>
-        <div class="featured-logos">
-          <span>FOOD & WINE</span>
-          <span>✦</span>
-          <span>EATER</span>
-          <span>✦</span>
-          <span>LOCAL HARVEST</span>
-        </div>
+<!-- Gallery -->
+<section id="gallery">
+  <h2 class="section-title">From Pond to <span>Plate</span></h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">🐟</div>
+    <div class="gallery-item">🌿</div>
+    <div class="gallery-item">🍽️</div>
+    <div class="gallery-item">🚛</div>
+    <div class="gallery-item">🏞️</div>
+    <div class="gallery-item">⭐</div>
+  </div>
+  <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <h2 class="section-title">Let's <span>Connect</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <span>123 River Road, Springfield, IL 62701</span></div>
+      <div class="contact-detail"><i class="fas fa-phone-alt"></i> <span>+1 (217) 555-0123</span></div>
+      <div class="contact-detail"><i class="fas fa-envelope"></i> <span>hello@ediblefarms.com</span></div>
+      <div class="contact-detail"><i class="fas fa-clock"></i> <span>Mon-Fri: 9am – 6pm | Sat: 10am – 2pm</span></div>
+      <div class="social-icons" style="margin-top: 1.5rem;">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
-  </section>
+    <div class="contact-form">
+      <input type="text" placeholder="Your name" id="name">
+      <input type="email" placeholder="Email address">
+      <textarea rows="4" placeholder="Tell us about your order or inquiry..."></textarea>
+      <button>Send Message →</button>
+    </div>
+  </div>
+</section>
 
-  <section class="restaurant-cta">
-    <h3>Reliable Supply for Restaurants & Caterers</h3>
-    <p>Consistent table-size catfish, transparent pricing, and dependable weekly delivery tailored for food businesses.</p>
-    <a href="#" class="btn btn-primary" style="background: linear-gradient(135deg, #25d366, #1a9e4a); color:#061d18;">Request a Supply Contract →</a>
-  </section>
+<!-- Bulk Orders Preview / CTA -->
+<section id="bulk" style="background: linear-gradient(125deg, #05231e, #02120e); border-radius: 40px; margin: 0 5% 60px; padding: 50px 5%; text-align: center;">
+  <h3 style="font-family: 'Cormorant Garamond'; font-size: 2rem;">Volume discounts & custom contracts</h3>
+  <p style="margin: 1rem auto; max-width: 600px;">Partner with us for reliable supply. Weekly delivery, flexible quantities, farm-direct pricing.</p>
+  <a href="#contact" class="btn btn-primary" style="background: #25d366;">Request a Quote →</a>
+</section>
 
-  <script>
-    (function() {
-      // Sticky header
-      const header = document.getElementById('mainHeader');
-      const menuToggle = document.getElementById('menuToggle');
-      const mobileNav = document.getElementById('mobileNav');
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><h4>Edible Farms</h4><p style="font-size:0.85rem;">Premium catfish, raised naturally. Local, responsible, and delicious.</p></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="#">Bulk Orders</a><a href="#">Shipping Policy</a><a href="#">Returns</a><a href="#">FAQs</a></div>
+    <div class="footer-col"><h4>Newsletter</h4><p style="font-size:0.8rem;">Get fresh updates & recipes.</p><div style="display:flex; margin-top:0.5rem;"><input type="email" placeholder="Your email" style="background:rgba(255,255,255,0.1); border:none; padding:0.6rem; border-radius:30px; width:100%;"><button style="background:var(--accent-green); border:none; border-radius:30px; padding:0 1rem; margin-left:0.5rem; cursor:pointer;">→</button></div></div>
+  </div>
+  <div class="copyright">© 2025 Edible Farms — Fresh. Local. Responsible. All rights reserved.</div>
+</footer>
 
-      function handleScroll() {
-        if (window.scrollY > 30) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      }
-      window.addEventListener('scroll', handleScroll);
-      handleScroll();
+<script>
+  (function() {
+    const header = document.getElementById('mainHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const cursor = document.querySelector('.custom-cursor');
+    const interactive = document.querySelectorAll('a, .btn, .service-card, .gallery-item, button');
 
-      // Mobile menu
-      if (menuToggle && mobileNav) {
-        menuToggle.addEventListener('click', (e) => {
-          e.stopPropagation();
-          mobileNav.classList.toggle('active');
-        });
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    });
 
-        const mobileLinks = mobileNav.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-          link.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-          });
-        });
-
-        document.addEventListener('click', (event) => {
-          if (mobileNav.classList.contains('active') && !mobileNav.contains(event.target) && event.target !== menuToggle && !menuToggle.contains(event.target)) {
-            mobileNav.classList.remove('active');
-          }
-        });
-      }
-
-      // Premium custom cursor effect
-      const cursor = document.querySelector('.custom-cursor');
-      const interactiveElements = document.querySelectorAll('a, .btn, .badge-item, .menu-toggle');
-
-      document.addEventListener('mousemove', (e) => {
-        if (cursor) {
-          cursor.style.left = e.clientX + 'px';
-          cursor.style.top = e.clientY + 'px';
-        }
+    if(menuToggle && mobileNav) {
+      menuToggle.addEventListener('click', () => mobileNav.classList.toggle('active'));
+      mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileNav.classList.remove('active')));
+      document.addEventListener('click', (e) => {
+        if(mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && e.target !== menuToggle)
+          mobileNav.classList.remove('active');
       });
+    }
 
-      interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          if (cursor) cursor.classList.add('hover');
-        });
-        el.addEventListener('mouseleave', () => {
-          if (cursor) cursor.classList.remove('hover');
-        });
+    if(cursor) {
+      document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+      interactive.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
       });
+    }
 
-      // Logo fallback
-      const logo = document.querySelector('.logo-img');
-      if (logo && logo.complete && logo.naturalWidth === 0) {
-        logo.style.opacity = '0.95';
-      }
-    })();
-  </script>
+    // smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
