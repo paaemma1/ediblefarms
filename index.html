@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>EdibleFarms | Fresh, Locally Raised Catfish</title>
+  <title>EdibleFarms | Premium Locally Raised Catfish</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Google Fonts - Elegant serif + modern sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -18,6 +18,11 @@
     :root {
       --primary-dark: #061d18;
       --accent-green: #25d366;
+      --accent-gold: #d4af37;
+      --accent-gold-glow: rgba(212, 175, 55, 0.3);
+      --glass-bg: rgba(6, 29, 24, 0.48);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-border-glow: rgba(37, 211, 102, 0.3);
       --text-light: #eef4ff;
     }
 
@@ -27,9 +32,32 @@
       color: white;
       line-height: 1.5;
       overflow-x: hidden;
+      cursor: default;
     }
 
-    /* ===== HEADER (Sticky + Smooth) ===== */
+    /* ===== PREMIUM CUSTOM CURSOR ===== */
+    .custom-cursor {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease, width 0.2s, height 0.2s, background 0.2s;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+
+    .custom-cursor.hover {
+      width: 32px;
+      height: 32px;
+      background: rgba(37, 211, 102, 0.5);
+      backdrop-filter: blur(2px);
+      mix-blend-mode: normal;
+    }
+
+    /* ===== HEADER ===== */
     .main-header {
       position: fixed;
       top: 0;
@@ -40,19 +68,18 @@
       align-items: center;
       justify-content: space-between;
       z-index: 1100;
-      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      backdrop-filter: blur(0px);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       background: transparent;
     }
 
     .main-header.scrolled {
       background: rgba(6, 29, 24, 0.88);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
       height: 78px;
+      border-bottom: 1px solid rgba(37, 211, 102, 0.15);
     }
 
-    /* LOGO: big & premium - shifted down a bit */
     .logo-container {
       position: relative;
       display: flex;
@@ -60,6 +87,7 @@
       justify-content: flex-start;
       min-width: 210px;
       transform: translateY(8px);
+      transition: transform 0.3s ease;
     }
 
     .logo-img {
@@ -79,7 +107,7 @@
       height: 92px;
     }
 
-    /* ===== CENTERED NAVIGATION ===== */
+    /* navigation with premium hover */
     .nav-links {
       display: flex;
       justify-content: center;
@@ -92,12 +120,27 @@
     .nav-links a {
       color: #f1f5f9;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 500;
       letter-spacing: -0.2px;
-      transition: all 0.2s ease;
-      opacity: 0.9;
-      white-space: nowrap;
+      transition: all 0.3s ease;
+      opacity: 0.88;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-gold));
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .nav-links a:hover {
@@ -107,15 +150,10 @@
     }
 
     @media (min-width: 1200px) {
-      .nav-links {
-        gap: 3.2rem;
-      }
-      .nav-links a {
-        font-size: 1.05rem;
-      }
+      .nav-links { gap: 3.2rem; }
+      .nav-links a { font-size: 1rem; }
     }
 
-    /* mobile menu */
     .menu-toggle {
       display: none;
       font-size: 2rem;
@@ -124,6 +162,11 @@
       border: none;
       color: white;
       z-index: 1200;
+      transition: transform 0.2s;
+    }
+
+    .menu-toggle:hover {
+      transform: scale(1.05);
     }
 
     .mobile-nav {
@@ -132,15 +175,15 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background: rgba(3, 20, 16, 0.96);
-      backdrop-filter: blur(24px);
+      background: rgba(3, 20, 16, 0.98);
+      backdrop-filter: blur(28px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 2rem;
       transform: translateX(100%);
-      transition: transform 0.4s ease;
+      transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       z-index: 1050;
     }
 
@@ -154,9 +197,14 @@
       color: white;
       text-decoration: none;
       padding: 0.5rem;
+      transition: color 0.2s;
     }
 
-    /* ===== HERO SECTION - with trust badges on right ===== */
+    .mobile-nav a:hover {
+      color: var(--accent-green);
+    }
+
+    /* ===== HERO SECTION - PREMIUM GLASS EFFECTS ===== */
     .hero {
       min-height: 92vh;
       padding: 60px 8% 90px;
@@ -166,28 +214,32 @@
       flex-wrap: wrap;
       background: 
         linear-gradient(105deg, 
-          rgba(6, 29, 24, 0.92) 0%,
-          rgba(6, 29, 24, 0.75) 40%,
-          rgba(6, 29, 24, 0.5) 65%,
-          rgba(6, 29, 24, 0.2) 100%),
+          rgba(6, 29, 24, 0.94) 0%,
+          rgba(6, 29, 24, 0.7) 40%,
+          rgba(6, 29, 24, 0.4) 65%,
+          rgba(6, 29, 24, 0.15) 100%),
         url('redtail-catfish.jpg');
       background-size: cover;
       background-position: 72% center;
       background-repeat: no-repeat;
-      background-blend-mode: normal;
+      position: relative;
     }
 
-    @media (min-width: 1400px) {
-      .hero { padding-top: 45px; }
+    /* decorative floating elements */
+    .hero::before {
+      content: '🐟';
+      position: absolute;
+      bottom: 15%;
+      right: 5%;
+      font-size: 6rem;
+      opacity: 0.06;
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
     }
-    @media (max-width: 1200px) and (min-width: 992px) {
-      .hero { padding-top: 55px; }
-    }
-    @media (max-width: 991px) {
-      .hero { padding-top: 70px; }
-    }
-    @media (max-width: 768px) {
-      .hero { padding-top: 75px; background-position: 55% center; flex-direction: column; align-items: flex-start; gap: 2rem; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
     }
 
     .hero-content {
@@ -196,7 +248,7 @@
       flex: 1;
     }
 
-    /* ===== TRUST BADGES (vertical stack on the right) ===== */
+    /* PREMIUM TRUST BADGES - glassmorphism + gradient borders */
     .trust-badges {
       display: flex;
       flex-direction: column;
@@ -205,12 +257,22 @@
       opacity: 0;
       transform: translateX(30px);
       animation: slideInRight 0.7s ease forwards 0.4s;
-      background: rgba(6, 29, 24, 0.45);
-      backdrop-filter: blur(12px);
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
       padding: 1.8rem 1.8rem;
-      border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      min-width: 240px;
+      border-radius: 32px;
+      border: 1px solid transparent;
+      background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), 
+                        linear-gradient(135deg, var(--accent-green), var(--accent-gold), var(--accent-green));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      min-width: 260px;
+      transition: all 0.4s ease;
+    }
+
+    .trust-badges:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(37, 211, 102, 0.2);
     }
 
     @keyframes slideInRight {
@@ -223,9 +285,14 @@
     .badge-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      gap: 14px;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: transform 0.2s ease;
+    }
+
+    .badge-item:hover {
+      transform: translateX(5px);
     }
 
     .badge-item:last-child {
@@ -234,7 +301,12 @@
 
     .badge-icon {
       font-size: 1.8rem;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+      transition: transform 0.2s;
+    }
+
+    .badge-item:hover .badge-icon {
+      transform: scale(1.05);
     }
 
     .badge-text {
@@ -251,14 +323,50 @@
 
     .badge-sub {
       font-size: 0.7rem;
-      opacity: 0.75;
+      opacity: 0.7;
       color: #cbd5e1;
+    }
+
+    /* Social proof strip */
+    .social-proof {
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .social-proof-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.6;
+      margin-bottom: 0.6rem;
+    }
+
+    .featured-logos {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      flex-wrap: wrap;
+    }
+
+    .featured-logos span {
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .featured-logos span:hover {
+      opacity: 1;
+      color: var(--accent-green);
     }
 
     @media (max-width: 768px) {
       .trust-badges {
         margin-left: 0;
-        margin-top: 0.5rem;
+        margin-top: 1.5rem;
         width: 100%;
         flex-direction: row;
         flex-wrap: wrap;
@@ -276,21 +384,22 @@
       .badge-item:last-child {
         border-right: none;
       }
+      .social-proof {
+        width: 100%;
+      }
     }
 
     @media (max-width: 550px) {
       .trust-badges {
         flex-direction: column;
-        align-items: stretch;
       }
       .badge-item {
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding-bottom: 0.8rem;
       }
     }
 
-    /* fade-up animation for main content */
+    /* Typography enhancements */
     .hero-tagline, .hero h2, .hero-description, .btn-group, .hero-trusted {
       opacity: 0;
       transform: translateY(26px);
@@ -312,55 +421,57 @@
 
     .hero-tagline {
       color: var(--accent-green);
-      font-size: 1rem;
-      letter-spacing: 4px;
-      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 5px;
+      font-weight: 600;
       text-transform: uppercase;
       margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-tagline::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-gold));
     }
 
     @media (min-width: 768px) {
-      .hero-tagline {
-        font-size: 1.1rem;
-        letter-spacing: 5px;
-        margin-bottom: 1.2rem;
-      }
-    }
-    @media (min-width: 1200px) {
-      .hero-tagline {
-        font-size: 1.2rem;
-        letter-spacing: 6px;
-        margin-bottom: 1.3rem;
-      }
+      .hero-tagline { font-size: 0.9rem; letter-spacing: 6px; margin-bottom: 1.2rem; }
     }
 
     .hero h2 {
-      font-size: clamp(3rem, 6.5vw, 4.8rem);
-      font-weight: 800;
-      line-height: 1.08;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 7vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.05;
       margin-bottom: 1.2rem;
-      letter-spacing: -0.02em;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+      background: linear-gradient(135deg, #ffffff, #d4f5e0);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
     .hero-description {
-      font-size: 1.05rem;
+      font-size: 1rem;
       line-height: 1.6;
       margin-bottom: 2.2rem;
       color: #e2edf2;
-      max-width: 580px;
+      max-width: 560px;
       font-weight: 400;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
 
     @media (min-width: 768px) {
-      .hero-description {
-        font-size: 1.12rem;
-        line-height: 1.65;
-        margin-bottom: 2.5rem;
-      }
+      .hero-description { font-size: 1.08rem; line-height: 1.65; margin-bottom: 2.5rem; }
     }
 
+    /* Premium buttons with gradient */
     .btn-group {
       display: flex;
       flex-wrap: wrap;
@@ -372,44 +483,62 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 0.85rem 1.9rem;
+      padding: 0.9rem 2rem;
       border-radius: 50px;
       font-weight: 700;
       text-decoration: none;
-      transition: all 0.25s;
-      backdrop-filter: blur(2px);
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn-primary {
-      background: var(--accent-green);
+      background: linear-gradient(135deg, var(--accent-green), #1a9e4a);
       color: #061d18;
-      box-shadow: 0 10px 22px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+      border: none;
     }
 
     .btn-primary:hover {
-      background: #1bb154;
-      transform: translateY(-2px);
-      box-shadow: 0 14px 26px rgba(37, 211, 102, 0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.45);
     }
 
     .btn-outline {
-      border: 1.5px solid rgba(255, 255, 255, 0.75);
-      background: rgba(6, 29, 24, 0.45);
-      color: white;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      background: rgba(6, 29, 24, 0.4);
       backdrop-filter: blur(8px);
+      color: white;
     }
 
     .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.18);
-      border-color: white;
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent-green);
+      transform: translateY(-3px);
     }
 
     .hero-trusted {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 500;
       color: #e2edf2;
       background: rgba(0, 0, 0, 0.35);
@@ -417,131 +546,80 @@
       padding: 0.6rem 1.3rem;
       border-radius: 60px;
       width: fit-content;
-      border: 0.5px solid rgba(255,255,255,0.2);
+      border: 0.5px solid rgba(255,255,255,0.15);
     }
 
+    /* Restaurant CTA premium */
     .restaurant-cta {
       padding: 85px 8%;
-      background: linear-gradient(125deg, #062a22, #02120e);
+      background: linear-gradient(125deg, #05231e, #02110e);
       text-align: center;
-      border-top: 1px solid rgba(37, 211, 102, 0.25);
+      position: relative;
+      border-top: 1px solid rgba(37, 211, 102, 0.2);
+    }
+
+    .restaurant-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-green), var(--accent-gold), transparent);
     }
 
     .restaurant-cta h3 {
-      font-size: clamp(2.1rem, 4vw, 3.2rem);
-      font-weight: 800;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 700;
       max-width: 800px;
       margin: 0 auto 1.2rem;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.2px;
     }
 
     .restaurant-cta p {
       max-width: 660px;
       margin: 0 auto 2rem;
       font-size: 1.05rem;
-      color: #cbdbe6;
+      color: #cbd5e1;
     }
 
+    /* Responsive */
     @media (max-width: 900px) {
-      .nav-links {
-        display: none;
-      }
-      .menu-toggle {
-        display: block;
-      }
-      .main-header {
-        padding: 0 5%;
-      }
-      .logo-container {
-        transform: translateY(6px);
-      }
-      .logo-img {
-        height: 180px;
-      }
-      .main-header.scrolled .logo-container {
-        transform: translateY(3px);
-      }
-      .main-header.scrolled .logo-img {
-        height: 70px;
-      }
-      .hero {
-        padding-top: 80px;
-      }
-      .hero-content {
-        margin-top: 15px;
-      }
-      .hero-description {
-        font-size: 0.98rem;
-        margin-bottom: 1.8rem;
-        line-height: 1.55;
-      }
-      .hero h2 {
-        margin-bottom: 1rem;
-      }
-      .hero-trusted {
-        font-size: 0.75rem;
-      }
-      .hero-tagline {
-        font-size: 0.9rem;
-        letter-spacing: 4px;
-        margin-bottom: 0.9rem;
-      }
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .main-header { padding: 0 5%; }
+      .logo-container { transform: translateY(6px); }
+      .logo-img { height: 180px; }
+      .main-header.scrolled .logo-container { transform: translateY(3px); }
+      .main-header.scrolled .logo-img { height: 70px; }
+      .hero { padding-top: 80px; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .hero-content { margin-top: 5px; }
+      .hero-description { font-size: 0.95rem; }
+      .hero-trusted { font-size: 0.75rem; }
+      .hero-tagline { font-size: 0.8rem; }
     }
 
     @media (max-width: 600px) {
-      .hero {
-        padding-top: 90px;
-        min-height: auto;
-      }
-      .logo-container {
-        transform: translateY(5px);
-      }
-      .hero-content {
-        margin-top: 10px;
-      }
-      .hero h2 {
-        margin-bottom: 0.9rem;
-      }
-      .hero-description {
-        font-size: 0.9rem;
-        margin-bottom: 1.6rem;
-        line-height: 1.5;
-      }
-      .btn-group {
-        margin-bottom: 1.6rem;
-      }
-      .btn-group .btn {
-        padding: 0.65rem 1.4rem;
-      }
-      .hero-tagline {
-        font-size: 0.85rem;
-        letter-spacing: 3px;
-        margin-bottom: 0.8rem;
-      }
+      .hero { padding-top: 95px; }
+      .logo-container { transform: translateY(5px); }
+      .hero h2 { margin-bottom: 0.8rem; }
+      .hero-description { font-size: 0.88rem; margin-bottom: 1.5rem; }
+      .btn-group { margin-bottom: 1.5rem; }
+      .btn { padding: 0.7rem 1.5rem; }
     }
 
     @media (min-width: 1600px) {
-      .nav-links {
-        gap: 4rem;
-      }
-      .nav-links a {
-        font-size: 1.1rem;
-      }
-      .hero-description {
-        font-size: 1.2rem;
-        max-width: 660px;
-      }
-      .logo-container {
-        transform: translateY(10px);
-      }
-      .trust-badges {
-        padding: 2rem 2rem;
-        gap: 1.8rem;
-      }
+      .nav-links { gap: 4rem; }
+      .trust-badges { padding: 2rem 2rem; }
+      .hero-description { font-size: 1.15rem; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Premium custom cursor -->
+  <div class="custom-cursor"></div>
 
   <header class="main-header" id="mainHeader">
     <div class="logo-container">
@@ -580,8 +658,8 @@
       </p>
 
       <div class="btn-group">
-        <a href="#" class="btn btn-primary">Bulk Orders</a>
-        <a href="#" class="btn btn-outline">Buy for Home</a>
+        <a href="#" class="btn btn-primary">Bulk Orders →</a>
+        <a href="#" class="btn btn-outline">Buy for Home →</a>
       </div>
 
       <div class="hero-trusted">
@@ -589,7 +667,7 @@
       </div>
     </div>
 
-    <!-- TRUST BADGES - filling the empty space on the right -->
+    <!-- Premium trust badges + social proof -->
     <div class="trust-badges">
       <div class="badge-item">
         <span class="badge-icon">🐟</span>
@@ -619,17 +697,30 @@
           <span class="badge-sub">Farm-to-fork guarantee</span>
         </div>
       </div>
+      
+      <!-- Social proof / as featured in -->
+      <div class="social-proof">
+        <div class="social-proof-label">AS FEATURED IN</div>
+        <div class="featured-logos">
+          <span>FOOD & WINE</span>
+          <span>✦</span>
+          <span>EATER</span>
+          <span>✦</span>
+          <span>LOCAL HARVEST</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="restaurant-cta">
     <h3>Reliable Supply for Restaurants & Caterers</h3>
     <p>Consistent table-size catfish, transparent pricing, and dependable weekly delivery tailored for food businesses.</p>
-    <a href="#" class="btn btn-primary" style="background: #25d366; color:#061d18; box-shadow: 0 6px 16px rgba(0,0,0,0.2);">Request a Supply Contract →</a>
+    <a href="#" class="btn btn-primary" style="background: linear-gradient(135deg, #25d366, #1a9e4a); color:#061d18;">Request a Supply Contract →</a>
   </section>
 
   <script>
     (function() {
+      // Sticky header
       const header = document.getElementById('mainHeader');
       const menuToggle = document.getElementById('menuToggle');
       const mobileNav = document.getElementById('mobileNav');
@@ -644,6 +735,7 @@
       window.addEventListener('scroll', handleScroll);
       handleScroll();
 
+      // Mobile menu
       if (menuToggle && mobileNav) {
         menuToggle.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -664,6 +756,27 @@
         });
       }
 
+      // Premium custom cursor effect
+      const cursor = document.querySelector('.custom-cursor');
+      const interactiveElements = document.querySelectorAll('a, .btn, .badge-item, .menu-toggle');
+
+      document.addEventListener('mousemove', (e) => {
+        if (cursor) {
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
+        }
+      });
+
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          if (cursor) cursor.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          if (cursor) cursor.classList.remove('hover');
+        });
+      });
+
+      // Logo fallback
       const logo = document.querySelector('.logo-img');
       if (logo && logo.complete && logo.naturalWidth === 0) {
         logo.style.opacity = '0.95';
