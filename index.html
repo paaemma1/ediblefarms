@@ -439,7 +439,7 @@
   <p style="text-align: center; margin-top: 2rem; opacity: 0.7;">Fresh harvest, sustainable ponds, and premium fillets — captured daily.</p>
 </section>
 
-<!-- Contact Section with EmailJS - FULLY INTEGRATED & WORKING -->
+<!-- Contact Section - FULLY WORKING WITH CORRECT VARIABLE NAMES -->
 <section id="contact">
   <h2 class="section-title">Let's <span>Connect</span></h2>
   <div class="contact-grid">
@@ -532,7 +532,7 @@
       });
     });
 
-    // EmailJS Form Submission - FULLY WORKING with your new template!
+    // EmailJS Form Submission - WITH CORRECT VARIABLES MATCHING YOUR TEMPLATE
     if(contactForm) {
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -549,13 +549,12 @@
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
         
-        // Prepare template parameters - matching your EmailJS template variables
+        // Prepare template parameters - MATCHING YOUR EXACT TEMPLATE VARIABLES
+        // Your template uses {{name}}, {{email}}, and {{message}}
         const templateParams = {
-          from_name: name,
-          from_email: email,
-          message: message,
-          to_name: 'Edible Farms',
-          reply_to: email
+          name: name,           // Matches {{name}} in your template
+          email: email,         // Matches {{email}} in your template  
+          message: message      // Matches the message variable in your content
         };
         
         try {
@@ -567,11 +566,6 @@
             formMessage.className = 'form-message success';
             formMessage.innerHTML = '✓ Message sent successfully! We\'ll get back to you soon.';
             contactForm.reset();
-            
-            // Auto hide after 5 seconds
-            setTimeout(() => {
-              formMessage.style.display = 'none';
-            }, 5000);
           } else {
             throw new Error('Failed to send');
           }
@@ -579,15 +573,15 @@
           console.error('EmailJS Error:', error);
           formMessage.className = 'form-message error';
           formMessage.innerHTML = '✗ Sorry, something went wrong. Please email us directly at ediblefarms000@gmail.com';
-          
-          // Auto hide after 5 seconds
-          setTimeout(() => {
-            formMessage.style.display = 'none';
-          }, 5000);
         } finally {
           // Reset button
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
+          
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            formMessage.style.display = 'none';
+          }, 5000);
         }
       });
     }
